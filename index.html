@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12-Week GenAI & Agentic AI Mastery — Yash × Kushagra</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --text: #000000;
+    --yellow: #FFF000;
+    --red: #FF0000;
+    --blue: #0000FF;
+    --border-color: #000000;
+    --border-width: 3px;
+    --shadow-color: #000000;
+    --shadow-offset: 6px;
+    --gray: #F0F0F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+  }
+
+  /* ── BRUTALIST HELPERS ── */
+  .brutal-border { border: var(--border-width) solid var(--border-color); }
+  .brutal-shadow { box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--shadow-color); }
+  .brutal-card {
+    background: #FFFFFF;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--shadow-color);
+    transition: all 0.15s ease;
+  }
+  .brutal-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--shadow-color);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+    border-bottom: var(--border-width) solid var(--border-color);
+    padding: 20px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 4px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; }
+  .nav-logo .dot { width: 12px; height: 12px; background: var(--red); display: inline-block; margin-left: 2px; }
+  .nav-links { display: flex; gap: 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+  .nav-links span { cursor: pointer; }
+  
+  @media(max-width: 768px){ .nav-links { display: none; } nav { padding: 16px 20px; } }
+
+  .nav-btn {
+    background: var(--yellow);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: 4px 4px 0px var(--shadow-color);
+    padding: 10px 24px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s ease;
+  }
+  .nav-btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px var(--shadow-color); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 40px 100px;
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .hero-content { flex: 1; max-width: 600px; }
+  
+  .hero-tag {
+    display: inline-block;
+    background: var(--yellow);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: 4px 4px 0px var(--shadow-color);
+    padding: 8px 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 6vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+  }
+  .highlight-red {
+    background: var(--red);
+    color: white;
+    padding: 0 16px;
+    display: inline-block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .hero-sub {
+    color: #444;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 48px;
+    line-height: 1.5;
+  }
+
+  .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; }
+  .btn-primary { background: var(--yellow); border: var(--border-width) solid var(--border-color); box-shadow: 6px 6px 0px var(--shadow-color); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; padding: 16px 32px; text-transform: uppercase; cursor: pointer; transition: all 0.1s ease; }
+  .btn-primary:active { transform: translate(6px, 6px); box-shadow: 0px 0px 0px var(--shadow-color); }
+  .btn-secondary { background: white; border: var(--border-width) solid var(--border-color); box-shadow: 6px 6px 0px var(--shadow-color); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; padding: 16px 32px; text-transform: uppercase; cursor: pointer; transition: all 0.1s ease; }
+  .btn-secondary:active { transform: translate(6px, 6px); box-shadow: 0px 0px 0px var(--shadow-color); }
+
+  /* Hero Graphic */
+  .hero-graphic { flex: 1; position: relative; height: 500px; display: flex; justify-content: center; align-items: center; }
+  .graphic-box { width: 80%; aspect-ratio: 1; border: var(--border-width) solid var(--border-color); position: absolute; }
+  .box-blue { background: var(--blue); transform: rotate(-4deg); z-index: 1; }
+  .box-red { background: var(--red); transform: rotate(3deg); z-index: 2; }
+  .box-yellow { background: var(--yellow); transform: rotate(0deg); z-index: 3; display: grid; place-items: center; font-size: 120px; font-weight: bold; line-height: 0; padding-top: 20px; box-shadow: 8px 8px 0px rgba(0,0,0,0.2); }
+
+  @media(max-width: 900px) {
+    .hero { flex-direction: column; padding: 60px 20px; text-align: left; }
+    .hero-graphic { width: 100%; height: 400px; margin-top: 40px; }
+    .box-yellow { font-size: 80px; }
+  }
+
+  /* ── MARQUEE STRIP ── */
+  .marquee-wrapper { background: #000; color: #fff; padding: 20px 0; overflow: hidden; white-space: nowrap; border-top: var(--border-width) solid var(--border-color); border-bottom: var(--border-width) solid var(--border-color); display: flex; }
+  .marquee-content { display: inline-block; animation: marquee 20s linear infinite; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .marquee-content span { margin: 0 24px; }
+  .marquee-content .star { color: var(--yellow); }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── REQUIREMENTS BAR ── */
+  .req-bar { border-bottom: var(--border-width) solid var(--border-color); padding: 24px; display:flex; gap:32px; justify-content:center; flex-wrap:wrap; background: var(--gray); font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; font-weight: 700; font-size: 13px; }
+  .req-item { display:flex; align-items:center; gap:10px; }
+
+  /* ── SECTION CONFIG ── */
+  .section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
+  .section-eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; color: #666; margin-bottom: 8px; display: block; }
+  .section-title { font-size: clamp(32px, 5vw, 48px); line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.02em; }
+  .section-title span { background: var(--blue); color: white; padding: 0 12px; }
+  .section-sub { font-size: 18px; margin-bottom: 48px; max-width: 700px; }
+
+  /* ── DELIVERABLES GRID ── */
+  .del-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 24px; }
+  .del-card { padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .del-icon { font-size: 40px; background: var(--yellow); width: 80px; height: 80px; display: grid; place-items: center; border: var(--border-width) solid var(--border-color); box-shadow: 4px 4px 0px var(--shadow-color); border-radius: 50%; }
+  .del-title { font-size: 20px; }
+  .del-desc { font-size: 15px; color: #333; font-weight: 500; }
+
+  /* ── PHASE BANNER ── */
+  .phase-banner { padding: 32px; margin-bottom: 32px; display:flex; align-items:center; gap:24px; background: var(--gray); }
+  .phase-num { width: 80px; height: 80px; background: var(--yellow); border: var(--border-width) solid var(--border-color); box-shadow: 6px 6px 0px var(--shadow-color); display: grid; place-items: center; font-size: 32px; font-weight: 700; flex-shrink: 0; }
+  .phase-info h2 { font-size: 28px; margin-bottom: 8px; }
+  .phase-info p { font-size: 15px; font-weight: 600; text-transform: uppercase; color: #555; }
+
+  /* ── WEEK CARD ── */
+  .week-card { margin-bottom: 24px; cursor: pointer; }
+  .week-header { padding: 24px; display: flex; align-items: center; gap: 20px; user-select: none; }
+  .week-card.open .week-header { border-bottom: var(--border-width) solid var(--border-color); }
+  
+  .week-badge { background: #000; color: #fff; padding: 8px 16px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; border: 2px solid #000; box-shadow: 3px 3px 0px var(--yellow); }
+  .p2-badge { box-shadow: 3px 3px 0px var(--red); }
+  
+  .week-title { font-size: 20px; flex: 1; text-transform: none; font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+  .week-chevron { font-size: 24px; font-weight: 800; transition: transform 0.2s; }
+  .week-card.open .week-chevron { transform: rotate(180deg); }
+  
+  .week-body { display: none; padding: 32px; background: #FAFAFA; }
+  .week-card.open .week-body { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media(max-width:768px){ .week-card.open .week-body { grid-template-columns: 1fr; gap: 32px; } }
+
+  .body-section h4 { font-size: 14px; margin-bottom: 16px; border-bottom: 2px solid #000; padding-bottom: 8px; display: inline-block; }
+  .learn-list { list-style: none; }
+  .learn-list li { font-size: 15px; font-weight: 500; padding: 12px 0 12px 28px; position: relative; border-bottom: 1px solid #E0E0E0; }
+  .learn-list li:last-child { border-bottom: none; }
+  .learn-list li::before { content: '■'; position: absolute; left: 0; top: 12px; color: var(--red); font-size: 12px; }
+  
+  .output-box { background: var(--yellow); border: 2px solid var(--border-color); box-shadow: 4px 4px 0px var(--shadow-color); padding: 16px; margin-bottom: 20px; font-weight: 700; font-size: 14px; }
+  .linkedin-box { background: #fff; border: 2px solid var(--border-color); box-shadow: 4px 4px 0px var(--blue); padding: 16px; margin-bottom: 24px; display: flex; gap: 12px; align-items: flex-start; }
+  .li-icon { background: #000; color: #fff; font-weight: 800; padding: 4px 8px; font-size: 12px; flex-shrink: 0; }
+  
+  .flash-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .flash-pill { background: #fff; border: 2px solid #000; padding: 6px 14px; font-size: 12px; font-weight: 700; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; box-shadow: 2px 2px 0px #000; }
+
+  /* ── PAYMENT PLAN ── */
+  .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
+  @media(max-width: 600px){ .payment-grid { grid-template-columns: 1fr; } }
+  .pay-card { padding: 40px 32px; position: relative; overflow: hidden; background: #fff; }
+  .pay-card.advance { background: var(--yellow); }
+  .pay-label { font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+  .pay-amount { font-size: 48px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+  .pay-note { font-size: 15px; font-weight: 500; }
+  
+  .pay-timeline { margin-top: 64px; border: var(--border-width) solid var(--border-color); padding: 40px; background: #fff; box-shadow: 8px 8px 0px var(--shadow-color); }
+  .pay-timeline h3 { font-size: 24px; margin-bottom: 32px; }
+  .timeline-row { display: flex; align-items: center; gap: 0; }
+  .timeline-item { flex: 1; text-align: center; position: relative; }
+  .timeline-item::before { content: ''; position: absolute; top: 20px; left: 50%; right: -50%; height: 3px; background: var(--border-color); z-index: 0; }
+  .timeline-item:last-child::before { display: none; }
+  .t-dot { width: 44px; height: 44px; border-radius: 0; border: 3px solid #000; display: grid; place-items: center; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; margin: 0 auto 16px; position: relative; z-index: 1; background: #fff; }
+  .t-dot.advance { background: var(--red); color: white; }
+  .t-dot.install { background: var(--yellow); }
+  .t-dot.done { background: var(--blue); color: white; }
+  .t-label { font-size: 12px; font-weight: 700; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; }
+  .t-amount { font-size: 14px; font-weight: 800; margin-top: 4px; }
+  
+  .full-pay-note { margin-top: 32px; background: var(--blue); color: white; border: 3px solid #000; box-shadow: 6px 6px 0px #000; padding: 24px; font-size: 16px; font-weight: 600; }
+  .api-note { margin-top: 24px; background: #fff; border: 3px solid #000; box-shadow: 6px 6px 0px #000; padding: 24px; font-size: 16px; font-weight: 600; }
+
+  /* ── TOTAL INVESTMENT CTA ── */
+  .invest-cta { background: var(--yellow); border: var(--border-width) solid var(--border-color); box-shadow: 12px 12px 0px var(--shadow-color); padding: 80px 40px; text-align: center; margin: 0 20px 80px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+  .invest-cta .amount { font-size: clamp(64px, 10vw, 100px); font-weight: 900; letter-spacing: -0.04em; margin: 16px 0; line-height: 1; font-family: 'Inter', sans-serif; }
+  .invest-cta p { font-size: 20px; font-weight: 600; margin-top: 16px; max-width: 600px; margin: 16px auto 0; }
+  .invest-cta .cta-row { display: flex; gap: 20px; justify-content: center; margin-top: 48px; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer { text-align: center; padding: 40px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; border-top: var(--border-width) solid var(--border-color); text-transform: uppercase; background: #fff; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    LEARNHUB<span class="dot"></span>
+  </div>
+  <div class="nav-links">
+    <span onclick="document.getElementById('deliverables').scrollIntoView({behavior:'smooth'})">Deliverables</span>
+    <span onclick="document.getElementById('phase1').scrollIntoView({behavior:'smooth'})">Curriculum</span>
+    <span onclick="document.getElementById('payment').scrollIntoView({behavior:'smooth'})">Pricing</span>
+  </div>
+  <div class="nav-btn" onclick="document.getElementById('phase1').scrollIntoView({behavior:'smooth'})">Prepared for Yash</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">PERSONAL MENTORSHIP</div>
+    <h1>12-WEEK<br>GENAI &<br><span class="highlight-red">AGENTIC AI</span><br>MASTERY</h1>
+    <p class="hero-sub">No code. No prior experience. Just results. A creative and structured curriculum that breaks conventions. Guided 1-on-1 by Kushagra exclusively for Yash.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('phase1').scrollIntoView({behavior:'smooth'})">EXPLORE CURRICULUM ➔</button>
+      <button class="btn-secondary" onclick="document.getElementById('deliverables').scrollIntoView({behavior:'smooth'})">VIEW OUTCOMES</button>
+    </div>
+  </div>
+  <div class="hero-graphic">
+    <div class="graphic-box box-blue"></div>
+    <div class="graphic-box box-red"></div>
+    <div class="graphic-box box-yellow">✱</div>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-wrapper">
+  <div class="marquee-content">
+    <span>N8N</span><span class="star">✦</span>
+    <span>DIFY.AI</span><span class="star">✦</span>
+    <span>OPENROUTER</span><span class="star">✦</span>
+    <span>SUPABASE</span><span class="star">✦</span>
+    <span>CLAUDE 4.7</span><span class="star">✦</span>
+    <span>GPT-5.5</span><span class="star">✦</span>
+    <span>GEMINI 3.1</span><span class="star">✦</span>
+    <span>N8N</span><span class="star">✦</span>
+    <span>DIFY.AI</span><span class="star">✦</span>
+    <span>OPENROUTER</span><span class="star">✦</span>
+    <span>SUPABASE</span><span class="star">✦</span>
+    <span>CLAUDE 4.7</span><span class="star">✦</span>
+    <span>GPT-5.5</span><span class="star">✦</span>
+    <span>GEMINI 3.1</span><span class="star">✦</span>
+  </div>
+</div>
+
+<!-- REQUIREMENTS BAR -->
+<div class="req-bar">
+  <div class="req-item"><span class="req-icon">💻</span> Laptop required for build phase</div>
+  <div class="req-item"><span class="req-icon">📖</span> Conceptual track available if needed</div>
+  <div class="req-item"><span class="req-icon">⚙️</span> Guided local setup provided</div>
+  <div class="req-item"><span class="req-icon">💳</span> ~₹1,500 total API usage</div>
+</div>
+
+<!-- DELIVERABLES -->
+<div class="section deliverables" id="deliverables">
+  <span class="section-eyebrow">THE OUTCOMES</span>
+  <h2 class="section-title"><span>BOLD</span> DELIVERABLES</h2>
+  <p class="section-sub">Everything you need to operate as a GenAI-native consultant and prove your expertise from day one.</p>
+  
+  <div class="del-grid">
+    <div class="del-card brutal-card">
+      <div class="del-icon">🧠</div>
+      <h3 class="del-title">Interactive Practice</h3>
+      <p class="del-desc">Live flashcards, quizzes, and weekly challenges to permanently reinforce technical concepts.</p>
+    </div>
+    <div class="del-card brutal-card" style="background: var(--gray);">
+      <div class="del-icon">📁</div>
+      <h3 class="del-title">Portfolio Site</h3>
+      <p class="del-desc">Pre-built UI template provided. Just plug in your 12-week journey and agent deployments.</p>
+    </div>
+    <div class="del-card brutal-card">
+      <div class="del-icon">📊</div>
+      <h3 class="del-title">Consulting Pitch Deck</h3>
+      <p class="del-desc">10 masterfully designed slides. Client-ready. Quantified ROI and business case frameworks.</p>
+    </div>
+    <div class="del-card brutal-card" style="background: var(--gray);">
+      <div class="del-icon">📄</div>
+      <h3 class="del-title">GenAI Solution Brief</h3>
+      <p class="del-desc">The ultimate one-page client leave-behind that explains complex architectures simply.</p>
+    </div>
+    <div class="del-card brutal-card">
+      <div class="del-icon">🎥</div>
+      <h3 class="del-title">Recorded Demo Video</h3>
+      <p class="del-desc">3-minute polished walkthrough of your final agent build, ready for your portfolio.</p>
+    </div>
+    <div class="del-card brutal-card" style="background: var(--gray);">
+      <div class="del-icon">📱</div>
+      <h3 class="del-title">12 LinkedIn Posts</h3>
+      <p class="del-desc">Structured public proof-of-work to drive inbound leads and audience growth.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 1 -->
+<div class="section" id="phase1" style="padding-top: 40px;">
+  <span class="section-eyebrow">CURRICULUM</span>
+  <h2 class="section-title">WEEK BY <span>WEEK</span></h2>
+  <p class="section-sub">Learn from an industry expert and gain real-world GenAI skills. Click any week to expand.</p>
+
+  <div class="phase-banner brutal-card">
+    <div class="phase-num">1</div>
+    <div class="phase-info">
+      <h2>THE BLUEPRINT</h2>
+      <p>Weeks 1–4 · Conceptual Mastery · No Tools Yet</p>
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-card brutal-card" id="w1">
+    <div class="week-header" onclick="toggleWeek('w1')">
+      <div class="week-badge">WEEK 1</div>
+      <div class="week-title">The 2026 AI Landscape & Core Mechanics</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Core LLM mechanics: Tokens, context windows & temperature.</li>
+          <li>The 2026 Frontier: Claude 4.7, GPT-5.5, Gemini 3.1, Llama 4.</li>
+          <li>Consulting skill: Model selection by cost, speed, and reasoning.</li>
+        </ul>
+        <div style="margin-top:24px">
+          <h4>Tasks</h4>
+          <ul class="learn-list">
+            <li>Test identical prompts across 3 models. Log variances.</li>
+            <li>Build a model-to-use-case mapping matrix.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">📄 Model Selection Matrix — 1-page client-ready reference</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>Why there's no single best AI in 2026 — and why consultants need to know the difference</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row">
+          <span class="flash-pill">Tokens</span><span class="flash-pill">Context Window</span><span class="flash-pill">Temperature</span><span class="flash-pill">Hallucination</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-card brutal-card" id="w2">
+    <div class="week-header" onclick="toggleWeek('w2')">
+      <div class="week-badge">WEEK 2</div>
+      <div class="week-title">The Art & Science of Prompting</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Techniques: Zero-Shot, Few-Shot, and Chain-of-Thought.</li>
+          <li>Architecture: System prompts vs. User prompts.</li>
+          <li>Debugging: Diagnosing prompt failure modes.</li>
+        </ul>
+        <div style="margin-top:24px">
+          <h4>Tasks</h4>
+          <ul class="learn-list">
+            <li>Write 10 templates (summaries, proposals, risk scans).</li>
+            <li>Iterate in Claude until client-ready. Document changes.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">📄 Consulting Prompt Library — 10 tested, reusable templates</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>Before/after: one structural change, dramatically better AI output</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row">
+          <span class="flash-pill">Zero-Shot</span><span class="flash-pill">Few-Shot</span><span class="flash-pill">Chain-of-Thought</span><span class="flash-pill">System Prompt</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-card brutal-card" id="w3">
+    <div class="week-header" onclick="toggleWeek('w3')">
+      <div class="week-badge">WEEK 3</div>
+      <div class="week-title">RAG, Memory & The Agentic Data Layer</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Concept: Why RAG fixes hallucinations (Vector DBs & Embeddings).</li>
+          <li>Architecture: In-context vs. external vs. procedural memory.</li>
+          <li>Application: Making agents remember across sessions.</li>
+        </ul>
+        <div style="margin-top:24px">
+          <h4>Tasks</h4>
+          <ul class="learn-list">
+            <li>Audit 5 real documents for RAG ingestion.</li>
+            <li>Ingest into Dify.ai and run 10 retrieval tests.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">📄 RAG Quality Checklist — Data repo + 1-page readiness framework</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>Demystifying RAG — why grounding AI in your data is the real competitive edge</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row">
+          <span class="flash-pill">Embeddings</span><span class="flash-pill">Vector DB</span><span class="flash-pill">Chunking</span><span class="flash-pill">Retrieval</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-card brutal-card" id="w4">
+    <div class="week-header" onclick="toggleWeek('w4')">
+      <div class="week-badge">WEEK 4</div>
+      <div class="week-title">Agentic AI — Architecture & Enterprise Governance</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>The Agentic Loop: Perceive → Plan → Act → Reflect.</li>
+          <li>Capabilities: Tool use and multi-agent handoffs.</li>
+          <li>Enterprise Governance: Privacy and audit trails.</li>
+        </ul>
+        <div style="margin-top:24px">
+          <h4>Tasks</h4>
+          <ul class="learn-list">
+            <li>Architect the full 8-week build on FigJam.</li>
+            <li>Define inputs, tools, failure states, and fallbacks.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">📊 Solution Architecture Blueprint — Full flowchart for the build</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>What an AI agent actually is — the loop powering every serious 2026 AI system</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row">
+          <span class="flash-pill">Agentic Loop</span><span class="flash-pill">Tool Calling</span><span class="flash-pill">Orchestrator</span><span class="flash-pill">Prompt Injection</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="section" id="phase2" style="padding-top:0">
+  <div class="phase-banner brutal-card">
+    <div class="phase-num" style="background:var(--red); color:#fff;">2</div>
+    <div class="phase-info">
+      <h2>THE BUILD</h2>
+      <p>Weeks 5–12 · Yash Builds · Kushagra Guides</p>
+      <div style="margin-top: 8px; font-weight: 700; background: #000; color: var(--yellow); display: inline-block; padding: 4px 12px;">🚀 MASTER PROJECT: AUTOMATED CONSULTING ANALYST</div>
+    </div>
+  </div>
+
+  <!-- WEEKS 5–12 -->
+  <div class="week-card brutal-card" id="w5">
+    <div class="week-header" onclick="toggleWeek('w5')">
+      <div class="week-badge p2-badge">WEEK 5</div>
+      <div class="week-title">V1 — The Base Engine</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Engine setup: Guided local n8n installation.</li>
+          <li>Connectivity: Linking OpenRouter to abstract the LLM layer.</li>
+          <li>Quality control: Building the baseline evaluation framework.</li>
+        </ul>
+        <div style="margin-top:24px"><h4>Tasks</h4>
+        <ul class="learn-list">
+          <li>Build core n8n agent & configure consulting persona.</li>
+          <li>Test 20 inputs. Launch the GitHub Pages repo.</li>
+        </ul></div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">🤖 V1 Agent Engine Live — Working agent with baseline scorecard</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>I just built my first AI agent — n8n canvas, system prompt, first results</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row"><span class="flash-pill">n8n Canvas</span><span class="flash-pill">OpenRouter</span><span class="flash-pill">Evaluation Rubric</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card brutal-card" id="w6">
+    <div class="week-header" onclick="toggleWeek('w6')">
+      <div class="week-badge p2-badge">WEEK 6</div>
+      <div class="week-title">V2 — Giving the Agent Memory</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Integration: Connecting n8n to the Dify.ai knowledge base.</li>
+          <li>Search types: Semantic vs. Keyword vs. Hybrid.</li>
+          <li>Debugging: Fixing the 3 main RAG failure modes.</li>
+        </ul>
+        <div style="margin-top:24px"><h4>Tasks</h4>
+        <ul class="learn-list">
+          <li>Upload doc repo to Dify and link to n8n.</li>
+          <li>Measure retrieval quality before & after tuning.</li>
+        </ul></div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">🗃️ V2 + Retrieval Quality Report — Agent grounded in proprietary docs</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>How RAG works in practice — before/after retrieval quality with real examples</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row"><span class="flash-pill">Hybrid Retrieval</span><span class="flash-pill">Top-K</span><span class="flash-pill">3 RAG Failures</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card brutal-card" id="w7">
+    <div class="week-header" onclick="toggleWeek('w7')">
+      <div class="week-badge p2-badge">WEEK 7</div>
+      <div class="week-title">V3 — Enabling Action (Tool Use)</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Tools: Adding live web search via Tavily.</li>
+          <li>Logic: Routing decisions (Web vs. RAG vs. Model).</li>
+          <li>Synthesis: Merging multiple data sources cleanly.</li>
+        </ul>
+        <div style="margin-top:24px"><h4>Tasks</h4>
+        <ul class="learn-list">
+          <li>Add web search node and build routing rules.</li>
+          <li>Test 10 queries requiring mixed data sources.</li>
+        </ul></div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">🔀 V3 + Tool Routing Diagram — Agent combining RAG + live web</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>Smart chatbot vs real agent — routing diagram shows exactly what changed</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row"><span class="flash-pill">Tool Calling</span><span class="flash-pill">Tavily</span><span class="flash-pill">Routing Logic</span><span class="flash-pill">Synthesis</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card brutal-card" id="w8">
+    <div class="week-header" onclick="toggleWeek('w8')">
+      <div class="week-badge p2-badge">WEEK 8</div>
+      <div class="week-title">V4 — Automation & Triggers</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Triggers: Webhooks, emails, and forms in n8n.</li>
+          <li>Patterns: Synchronous vs. Asynchronous workflows.</li>
+          <li>UX: True automation (zero human initiation).</li>
+        </ul>
+        <div style="margin-top:24px"><h4>Tasks</h4>
+        <ul class="learn-list">
+          <li>Set up email/form trigger to process briefs automatically.</li>
+          <li>Test full end-to-end background generation.</li>
+        </ul></div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">⚡ V4 + Walkthrough Video — Fully automated agent</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>My agent now runs without me — showing the email trigger live</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row"><span class="flash-pill">Webhooks</span><span class="flash-pill">Triggers</span><span class="flash-pill">Async Patterns</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card brutal-card" id="w9">
+    <div class="week-header" onclick="toggleWeek('w9')">
+      <div class="week-badge p2-badge">WEEK 9</div>
+      <div class="week-title">V5 — Multi-Agent Orchestration</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Design: Why specialist sub-agents beat generalists.</li>
+          <li>Pipeline: Orchestrator → Research → Synthesis → QA.</li>
+          <li>State: Passing data cleanly between nodes.</li>
+        </ul>
+        <div style="margin-top:24px"><h4>Tasks</h4>
+        <ul class="learn-list">
+          <li>Split single agent into 3 specialist sub-agents.</li>
+          <li>Compare output quality metrics (V4 vs V5).</li>
+        </ul></div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">🕸️ V5 + Quality Comparison Report — Multi-agent pipeline</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>Why 'one AI does everything' is the wrong model — visual of the orchestration flow</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row"><span class="flash-pill">Orchestrator</span><span class="flash-pill">Sub-Agents</span><span class="flash-pill">State Management</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card brutal-card" id="w10">
+    <div class="week-header" onclick="toggleWeek('w10')">
+      <div class="week-badge p2-badge">WEEK 10</div>
+      <div class="week-title">V6 — UI, Portfolio & Internal Demo</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>UI: Wrapping backend logic for internal demos.</li>
+          <li>Showcasing: Building the comprehensive portfolio UI.</li>
+          <li>Standards: Demo vs. Enterprise deployment constraints.</li>
+        </ul>
+        <div style="margin-top:24px"><h4>Tasks</h4>
+        <ul class="learn-list">
+          <li>Finalize the local agent build & internal test cases.</li>
+          <li>Customize the pre-built GitHub Pages portfolio template.</li>
+        </ul></div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">💻 Local Agent Demo + Full Portfolio Site</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>Here's what I built — full 10-week technical portfolio documented</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row"><span class="flash-pill">UI Wrapping</span><span class="flash-pill">GitHub Pages</span><span class="flash-pill">Demo vs Enterprise</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card brutal-card" id="w11">
+    <div class="week-header" onclick="toggleWeek('w11')">
+      <div class="week-badge p2-badge">WEEK 11</div>
+      <div class="week-title">V7 — Red-Teaming & Enterprise Hardening</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Security: Defending against Prompt Injection.</li>
+          <li>Reliability: Fallback responses & confidence thresholds.</li>
+          <li>Resilience: Handling API timeouts and malformed data.</li>
+        </ul>
+        <div style="margin-top:24px"><h4>Tasks</h4>
+        <ul class="learn-list">
+          <li>Run 20 adversarial inputs (try to break it).</li>
+          <li>Fix failures until passing the QA threshold.</li>
+        </ul></div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">🛡️ V7 + QA Security Report — Hardened agent doc</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>I tried to break my own AI agent — here's what I found</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row"><span class="flash-pill">Prompt Injection</span><span class="flash-pill">Confidence Thresholds</span><span class="flash-pill">Fallback Logic</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card brutal-card" id="w12">
+    <div class="week-header" onclick="toggleWeek('w12')">
+      <div class="week-badge" style="background:var(--blue);">WEEK 12</div>
+      <div class="week-title">Final Polish, Business Case & The Pitch</div>
+      <div class="week-chevron">▼</div>
+    </div>
+    <div class="week-body">
+      <div class="body-section">
+        <h4>What You'll Learn</h4>
+        <ul class="learn-list">
+          <li>Business value: Calculating ROI (Time saved, throughput).</li>
+          <li>Communication: Structuring the non-technical pitch.</li>
+          <li>Positioning: Using this build to sell consulting services.</li>
+        </ul>
+        <div style="margin-top:24px"><h4>Tasks</h4>
+        <ul class="learn-list">
+          <li>Final polish of agent, UI, and documentation.</li>
+          <li>Deliver 10-slide deck, 1-pager, and 3-min video.</li>
+          <li>Present full package to Kushagra for final sign-off.</li>
+        </ul></div>
+      </div>
+      <div class="body-section">
+        <h4>Outputs & Assets</h4>
+        <div class="output-box">🏆 Final Portfolio Package — Agent, Deck, Brief, Video</div>
+        <div class="linkedin-box"><div class="li-icon">IN</div><p>12 weeks. 1 complete agent. Here's everything I learned building it.</p></div>
+        <h4 style="margin-top:24px">Flashcards</h4>
+        <div class="flash-row"><span class="flash-pill">ROI Frameworks</span><span class="flash-pill">Objection Handling</span><span class="flash-pill">GenAI Pitching</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT PLAN -->
+<div class="section payment" id="payment">
+  <span class="section-eyebrow">INVESTMENT</span>
+  <h2 class="section-title">PAYMENT <span>PLAN</span></h2>
+  <p class="section-sub">Structured to keep the program accessible — pay as you progress.</p>
+
+  <div class="payment-grid">
+    <div class="pay-card brutal-card advance">
+      <div class="pay-label">Advance Deposit</div>
+      <div class="pay-amount">₹29,000</div>
+      <div class="pay-note">Due before Week 1 begins. Confirms your slot.</div>
+    </div>
+    <div class="pay-card brutal-card">
+      <div class="pay-label">Weekly Installments (Weeks 1–8)</div>
+      <div class="pay-amount">₹15,000</div>
+      <div class="pay-note">Per week × 8 weeks = ₹1,20,000 balance</div>
+    </div>
+  </div>
+
+  <div class="pay-timeline">
+    <h3>📅 WEEK-BY-WEEK SCHEDULE</h3>
+    <div style="overflow-x:auto; padding-bottom:16px;">
+      <div class="timeline-row" style="min-width:700px">
+        <div class="timeline-item">
+          <div class="t-dot advance">ADV</div>
+          <div class="t-label">Advance</div>
+          <div class="t-amount">₹29,000</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-dot install">W1</div>
+          <div class="t-label">Week 1</div>
+          <div class="t-amount">₹15,000</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-dot install">W2</div>
+          <div class="t-label">Week 2</div>
+          <div class="t-amount">₹15,000</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-dot install">W3</div>
+          <div class="t-label">Week 3</div>
+          <div class="t-amount">₹15,000</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-dot install">W4</div>
+          <div class="t-label">Week 4</div>
+          <div class="t-amount">₹15,000</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-dot install">W5</div>
+          <div class="t-label">Week 5</div>
+          <div class="t-amount">₹15,000</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-dot install">W6</div>
+          <div class="t-label">Week 6</div>
+          <div class="t-amount">₹15,000</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-dot install">W7</div>
+          <div class="t-label">Week 7</div>
+          <div class="t-amount">₹15,000</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-dot install">W8</div>
+          <div class="t-label">Week 8</div>
+          <div class="t-amount">₹15,000</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-dot done">✓</div>
+          <div class="t-label">Week 9</div>
+          <div class="t-amount">100% Done</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-pay-note">
+    <strong>✅ FULL PAYMENT COMPLETED ON OR BEFORE WEEK 9.</strong><br>Weeks 9–12 are fully paid — focus only on building, red-teaming, and your final pitch.
+  </div>
+  <div class="api-note">
+    <strong>💳 ESTIMATED API USAGE: ~₹1,500 TOTAL</strong><br>Across all 12 weeks — separate from program fee. Covers OpenRouter + any model API calls throughout the project.
+  </div>
+</div>
+
+<!-- INVEST CTA -->
+<div class="invest-cta">
+  <div style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;margin-bottom:8px">TOTAL PROGRAM INVESTMENT</div>
+  <div class="amount">₹1,49,000</div>
+  <p>1-ON-1 · 12 WEEKS · MENTORED BY KUSHAGRA</p>
+  <div style="font-size:14px;margin-top:24px;font-weight:600">+ ~₹1,500 API costs · Guided n8n local install · Laptop required for build phase</div>
+  <div class="cta-row">
+    <button class="btn-secondary" style="background:#fff; color:#000;" onclick="document.getElementById('phase1').scrollIntoView({behavior:'smooth'})">START YOUR JOURNEY ➔</button>
+  </div>
+</div>
+
+<footer>CONFIDENTIAL · PREPARED EXCLUSIVELY FOR YASH · KUSHAGRA | GENAI MENTOR · 2026</footer>
+
+<script>
+// ── WEEK TOGGLE ──────────────────────────────────────────────────────────────
+function toggleWeek(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
